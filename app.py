@@ -24,7 +24,7 @@ st.set_page_config(page_title="Retirement Finance Planner", layout="wide")
 
 
 # Add this line for debugging
-st.write(st.secrets.to_dict()) 
+#st.write(st.secrets.to_dict()) 
 
 # --- Firebase Initialization ---
 try:
@@ -54,11 +54,11 @@ try:
         # This will use your local file for testing
         #with open("firebase_creds.json") as f:
         #    creds_dict = json.load(f)
-        st.write("I am Here for Firebase certificate 1")
+        #st.write("I am Here for Firebase certificate 1")
         # re-format it to include the proper newline characters.
         #creds_dict['private_key'] = creds_dict['private_key'].replace('\\n', '\n')
         cred = credentials.Certificate(creds_dict)
-        st.write("I am Here for Firebase certificate 2")
+        #st.write("I am Here for Firebase certificate 2")
         firebase_admin.initialize_app(cred)
 except Exception as e:
     st.error("Firebase initialization failed. Ensure 'firebase_creds.json' is in the correct folder.")

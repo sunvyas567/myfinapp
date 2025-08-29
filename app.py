@@ -25,9 +25,18 @@ st.set_page_config(page_title="Retirement Finance Planner", layout="wide")
 # --- Firebase Initialization ---
 try:
     if not firebase_admin._apps:
+
+        # --- THIS IS THE FIX ---
+        # When deployed on Streamlit Community Cloud, it will use the secrets.
+        # Otherwise, it will fall back to the local JSON file.
+        if 'firebase_credentials' in st.secrets:
+            creds_dict = st.secrets["firebase_credentials"]
+        else:
+            with open("firebase_creds.json") as f:
+                creds_dict = json.load(f)
         # This will use your local file for testing
-        with open("firebase_creds.json") as f:
-            creds_dict = json.load(f)
+        #with open("firebase_creds.json") as f:
+        #    creds_dict = json.load(f)
         cred = credentials.Certificate(creds_dict)
         firebase_admin.initialize_app(cred)
 except Exception as e:

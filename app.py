@@ -22,6 +22,10 @@ import google.generativeai as genai
 
 st.set_page_config(page_title="Retirement Finance Planner", layout="wide")
 
+
+# Add this line for debugging
+st.write(st.secrets.to_dict()) 
+
 # --- Firebase Initialization ---
 try:
     if not firebase_admin._apps:

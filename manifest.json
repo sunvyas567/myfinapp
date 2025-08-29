@@ -1,0 +1,21 @@
+{
+  "name": "Future Finance Simulator",
+  "short_name": "Finance Sim",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "description": "A financial planning simulator.",
+  "icons": [
+    {
+      "src": "https://www.google.com/s2/favicons?sz=192&domain_url=https://streamlit.io",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://www.google.com/s2/favicons?sz=512&domain_url=https://streamlit.io",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

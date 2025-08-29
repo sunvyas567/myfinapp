@@ -42,6 +42,8 @@ try:
         #with open("firebase_creds.json") as f:
         #    creds_dict = json.load(f)
         st.write("I am Here for Firebase certificate 1")
+        # re-format it to include the proper newline characters.
+        creds_dict['private_key'] = creds_dict['private_key'].replace('\\n', '\n')
         cred = credentials.Certificate(creds_dict)
         st.write("I am Here for Firebase certificate 2")
         firebase_admin.initialize_app(cred)

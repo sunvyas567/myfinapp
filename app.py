@@ -34,7 +34,20 @@ try:
         # When deployed on Streamlit Community Cloud, it will use the secrets.
         # Otherwise, it will fall back to the local JSON file.
         if 'firebase_credentials' in st.secrets:
-            creds_dict = st.secrets["firebase_credentials"]
+            # If on the cloud, it reconstructs the credentials dictionary from the secrets.
+            creds_dict = {
+                "type": st.secrets["firebase_credentials"]["type"],
+                "project_id": st.secrets["firebase_credentials"]["project_id"],
+                "private_key_id": st.secrets["firebase_credentials"]["private_key_id"],
+                "private_key": st.secrets["firebase_credentials"]["private_key"].replace('\\n', '\n'),
+                "client_email": st.secrets["firebase_credentials"]["client_email"],
+                "client_id": st.secrets["firebase_credentials"]["client_id"],
+                "auth_uri": st.secrets["firebase_credentials"]["auth_uri"],
+                "token_uri": st.secrets["firebase_credentials"]["token_uri"],
+                "auth_provider_x509_cert_url": st.secrets["firebase_credentials"]["auth_provider_x509_cert_url"],
+                "client_x509_cert_url": st.secrets["firebase_credentials"]["client_x509_cert_url"],
+            }
+            #creds_dict = st.secrets["firebase_credentials"]
         else:
             with open("firebase_creds.json") as f:
                 creds_dict = json.load(f)
@@ -43,7 +56,7 @@ try:
         #    creds_dict = json.load(f)
         st.write("I am Here for Firebase certificate 1")
         # re-format it to include the proper newline characters.
-        creds_dict['private_key'] = creds_dict['private_key'].replace('\\n', '\n')
+        #creds_dict['private_key'] = creds_dict['private_key'].replace('\\n', '\n')
         cred = credentials.Certificate(creds_dict)
         st.write("I am Here for Firebase certificate 2")
         firebase_admin.initialize_app(cred)

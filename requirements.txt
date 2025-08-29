@@ -3,3 +3,7 @@ pandas
 plotly
 fpdf2
 kaleido
+streamlit-authenticator
+firebase-admin
+requests
+google-generativeai
